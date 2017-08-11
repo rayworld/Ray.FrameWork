@@ -20,6 +20,7 @@ namespace Ray.Framework.Encrypt
 {
     public sealed class EncryptHelper
     {
+        private static string Key = "77052300";
         public EncryptHelper()
         { }
 
@@ -116,6 +117,7 @@ namespace Ray.Framework.Encrypt
 
         private static byte[] IV = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
 
+        #region Encrypt
         public static String Encrypt(String Key, String str)
         {
             byte[] bKey = Encoding.UTF8.GetBytes(Key.Substring(0, 8));
@@ -136,6 +138,20 @@ namespace Ray.Framework.Encrypt
             }
         }
 
+
+        /// <summary>
+        /// 重载 Encrypt
+        /// </summary>
+        /// <param name="EncryptStr"></param>
+        /// <returns></returns>
+        public static String Encrypt(String EncryptStr)
+        {
+            return Encrypt(Key, EncryptStr);
+        }
+
+        #endregion
+
+        #region Decrypt
         public static String Decrypt(String Key, String DecryptStr)
         {
             try
@@ -155,5 +171,18 @@ namespace Ray.Framework.Encrypt
                 return string.Empty;
             }
         }
+
+        /// <summary>
+        /// 重载 Decrypt
+        /// </summary>
+        /// <param name="DecryptStr"></param>
+        /// <returns></returns>
+        public static String Decrypt(String DecryptStr)
+        {
+            return Decrypt(Key, DecryptStr);
+        }
+
+        #endregion
+
     }
 }

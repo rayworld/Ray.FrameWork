@@ -22,7 +22,6 @@ using Ray.Framework.Encrypt;
 
 namespace Ray.Framework.DBUtility
 {
-
     /// <summary>
     /// The SqlHelper class is intended to encapsulate high performance, 
     /// scalable best practices for common uses of SqlClient.
@@ -43,7 +42,7 @@ namespace Ray.Framework.DBUtility
         {
             get
             {
-                return EncryptHelper.Decrypt("77052300", ConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString);
+                return EncryptHelper.Decrypt(ConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString);
             }
         }
 
@@ -54,11 +53,7 @@ namespace Ray.Framework.DBUtility
         /// <returns></returns>
         public static string GetConnectionString(string configName)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings[configName].ConnectionString;
-            connectionString = EncryptHelper.Decrypt("77052300", ConfigurationManager.ConnectionStrings[configName].ConnectionString);
-
-            return connectionString;
-
+            return  EncryptHelper.Decrypt(ConfigurationManager.ConnectionStrings[configName].ConnectionString);
         }
 
         // Hashtable to store cached parameters
