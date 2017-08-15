@@ -53,7 +53,8 @@ namespace Ray.Framework.DBUtility
         /// <returns></returns>
         public static string GetConnectionString(string configName)
         {
-            return  EncryptHelper.Decrypt(ConfigurationManager.ConnectionStrings[configName].ConnectionString);
+            //return  EncryptHelper.Decrypt(ConfigurationManager.ConnectionStrings[configName].ConnectionString);
+            return ConfigurationManager.ConnectionStrings[configName].ConnectionString;
         }
 
         // Hashtable to store cached parameters
