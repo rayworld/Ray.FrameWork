@@ -4,7 +4,7 @@
 // http://msdn.microsoft.com/library/en-us/dnbda/html/daab-rm.asp
 //===============================================================================
 //Last Update:
-//      2011-03-13
+//      2017-08-17
 //Desc: 
 //      1.Add ExecuteDataSet()
 //      2.Overload ExecuteDatSet();
@@ -157,6 +157,18 @@ namespace Ray.Framework.DBUtility
             return ExecuteNonQuery(ConnectionString, CommandType.Text, cmdText, commandParameters);
         }
 
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static int ExecuteSql(string connString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteNonQuery(connString, CommandType.Text, cmdText, commandParameters);
+        }
+     
+
         #endregion
 
         #region ExecuteReader
@@ -204,6 +216,17 @@ namespace Ray.Framework.DBUtility
         public static SqlDataReader ExecuteReader(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteReader(ConnectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static SqlDataReader ExecuteReader(string connString , string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteReader(connString, CommandType.Text, cmdText, commandParameters);
         }
 
 
@@ -283,6 +306,17 @@ namespace Ray.Framework.DBUtility
             return ExecuteScalar(ConnectionString, CommandType.Text, cmdText, commandParameters);
         }
 
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static object GetSingle(string connString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteScalar(connString, CommandType.Text, cmdText, commandParameters);
+        }
+
         #endregion
 
         #region ExecuteDataSet
@@ -338,6 +372,17 @@ namespace Ray.Framework.DBUtility
         public static DataSet Query(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteDataSet(ConnectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static DataSet Query(string connString , string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteDataSet(connString, CommandType.Text, cmdText, commandParameters);
         }
 
         #endregion
