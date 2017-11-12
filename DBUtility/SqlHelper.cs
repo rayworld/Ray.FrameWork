@@ -12,6 +12,9 @@
 //      4.Overload ExecuteScalar(); 
 //      5.Overload ExecuteReader();
 
+//      2017-11-12
+//      为ExecuteNonQuery、ExecuteDataSet、ExecuteDataReader、ExecuteScelar 增加2个重载
+
 using System;
 using System.Configuration;
 using System.Data;
@@ -138,12 +141,35 @@ namespace Ray.Framework.DBUtility
         /// <summary>
         /// 重载
         /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static int ExecuteNonQuery(string connectionString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteNonQuery(connectionString, CommandType.Text, cmdText, commandParameters);
+        }
+        
+        /// <summary>
+        /// 重载
+        /// </summary>
         /// <param name="cmdText"></param>
         /// <param name="commandParameters"></param>
         /// <returns></returns>
         public static int ExecuteNonQuery(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteNonQuery(ConnectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static int ExecuteNonQuery(string cmdText)
+        {
+            return ExecuteNonQuery(ConnectionString, CommandType.Text, cmdText, null);
         }
 
         /// <summary>
@@ -213,6 +239,17 @@ namespace Ray.Framework.DBUtility
         /// <param name="cmdText"></param>
         /// <param name="commandParameters"></param>
         /// <returns></returns>
+        public static SqlDataReader ExecuteReader(string connectionString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteReader(connectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
         public static SqlDataReader ExecuteReader(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteReader(ConnectionString, CommandType.Text, cmdText, commandParameters);
@@ -224,11 +261,10 @@ namespace Ray.Framework.DBUtility
         /// <param name="cmdText"></param>
         /// <param name="commandParameters"></param>
         /// <returns></returns>
-        public static SqlDataReader ExecuteReader(string connString , string cmdText, params SqlParameter[] commandParameters)
+        public static SqlDataReader ExecuteReader(string cmdText)
         {
-            return ExecuteReader(connString, CommandType.Text, cmdText, commandParameters);
+            return ExecuteReader(ConnectionString, CommandType.Text, cmdText, null);
         }
-
 
         #endregion
 
@@ -290,10 +326,33 @@ namespace Ray.Framework.DBUtility
         /// <param name="cmdText"></param>
         /// <param name="commandParameters"></param>
         /// <returns></returns>
+        public static object ExecuteScalar(string connectionString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteScalar(connectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
         public static object ExecuteScalar(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteScalar(ConnectionString, CommandType.Text, cmdText, commandParameters);
         }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static object ExecuteScalar(string cmdText)
+        {
+            return ExecuteScalar(ConnectionString, CommandType.Text, cmdText, null);
+        }
+        
 
         /// <summary>
         /// 重载
@@ -358,11 +417,33 @@ namespace Ray.Framework.DBUtility
         /// <param name="cmdText"></param>
         /// <param name="commandParameters"></param>
         /// <returns></returns>
+        public static DataSet ExecuteDataSet(string connectionString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteDataSet(connectionString, CommandType.Text, cmdText, commandParameters);
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
         public static DataSet ExecuteDataSet(string cmdText, params SqlParameter[] commandParameters)
         {
             return ExecuteDataSet(ConnectionString, CommandType.Text, cmdText, commandParameters);
         }
-
+        
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static DataSet ExecuteDataSet(string cmdText)
+        {
+            return ExecuteDataSet(ConnectionString, CommandType.Text, cmdText, null);
+        }
+        
         /// <summary>
         /// 重载
         /// </summary>
