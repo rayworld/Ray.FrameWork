@@ -466,6 +466,39 @@ namespace Ray.Framework.DBUtility
             return ExecuteDataSet(connString, CommandType.Text, cmdText, commandParameters);
         }
 
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static DataTable ExecuteDataTable(string connectionString, string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteDataSet(connectionString, CommandType.Text, cmdText, commandParameters).Tables[0];
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static DataTable ExecuteDataTable(string cmdText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteDataSet(ConnectionString, CommandType.Text, cmdText, commandParameters).Tables[0];
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="commandParameters"></param>
+        /// <returns></returns>
+        public static DataTable ExecuteDataTable(string cmdText)
+        {
+            return ExecuteDataSet(ConnectionString, CommandType.Text, cmdText, null).Tables[0];
+        }
+
         #endregion
 
         #region CacheParameter
